@@ -1,4 +1,4 @@
-<%@ include file="inc.jsp" %>
+<%@ page import="action.*" %>
 <%
 //get parameter
 String username = request.getParameter("username");
@@ -11,31 +11,14 @@ if(username == null || password == null || password2 == null || email == null) {
 	response.sendRedirect("register.jsp");
 }
 
-//validate
-boolean isValid = false;
-String sql = "SELECT * FROM user WHERE username = '" + username + "'";
-try {
-	Class.forName(driver).newInstance();
-	Connection conn = DriverManager.getConnection(url, user, pwd);
-	Statement stmt = conn.createStatement();
-	ResultSet rs = stmt.executeQuery(sql);
-	if(!rs.next()) {
-		sql = "INSERT INTO user(username, password, email) values('" + username + "','" + password + "','" + email + "')";
-		stmt.execute(sql);
-		isValid = true;
-	}
-	
-	rs.close();
-	stmt.close();
-	conn.close();
-} catch (Exception e) {
-	e.printStackTrace();
-	out.println(e);
-} finally {
-	
-}
+UserBean userBean = new UserBean();
 
-if(isValid) {
+//validate
+boolean isExist = userBean.isExist(username);
+
+
+if(!isExist) {
+	userBean.add(username, password, email);
 	response.sendRedirect("login.jsp");
 } else {
 	response.sendRedirect("register.jsp");
