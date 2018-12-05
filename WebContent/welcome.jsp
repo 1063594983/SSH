@@ -8,6 +8,6 @@
 </head>
 <body>
 	<h1>欢迎你,<%=session.getAttribute("username") %></h1>
-	<a href="logout.jsp">退出</a>
+	<a href="UserServlet.do?method=logout">退出</a>
 </body>
 </html>

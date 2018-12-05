@@ -12,7 +12,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 </head>
 <body>
 	This is my JSP page. <br>
-	<form action="login_action.jsp" name="form1" method="post">
+	<form action="UserServlet.do?method=login" name="form1" method="post">
 		<table width="200" border="1">
 			<tr><td colspan="2">登录窗口</td></tr>
 			<tr>
@@ -31,5 +31,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			</tr>
 		</table>
 	</form>
+	当前在线用户: <%=com.utils.CounterListener.count %>
 </body>
 </html>

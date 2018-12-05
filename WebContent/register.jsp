@@ -7,7 +7,7 @@
 <title>register.jsp</title>
 </head>
 <body>
-	<form action="register_action.jsp" name="form1" method="post">
+	<form action="UserServlet.do?method=register" name="form1" method="post">
 		<table width="200" border="1">
 			<tr>
 				<td colspan="2">注册窗口</td>
